@@ -11,9 +11,9 @@ type UpdateEmployeeRequest struct {
 }
 
 type GetEmployeeRequest struct {
-	EmployeeId string `json:"employeeId" validate:"required"`
+	EmployeeId int `json:"employeeId" validate:"required"`
 }
 
 type DeleteEmployeeRequest struct {
-	EmployeeId string `json:"employeeId" validate:"required"`
+	EmployeeId int `json:"employeeId" validate:"required"`
 }

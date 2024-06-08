@@ -29,7 +29,7 @@ func (app *ApiHandler) UpdateEmpoyee(ctx *gin.Context) {
 		return
 	}
 
-	err = app.EmployeeLogic.Creatempoyee(ctx, request.EmployeeData)
+	err = app.EmployeeLogic.UpdateEmpoyee(ctx, request.EmployeeData)
 	if err != nil {
 		logger.Error(ctx, err.Error())
 		ctx.JSON(http.StatusInternalServerError, responseDto.GetErrorResponseObj(err.Error()))

@@ -6,11 +6,19 @@ import (
 	"crud/pkg/entity/responseDto"
 	"github.com/gin-gonic/gin"
 	"net/http"
+	"strconv"
 )
+
+func validateDeleteEmployee(ctx *gin.Context, request *requestDto.DeleteEmployeeRequest) error {
+	employeeId := ctx.Param("employeeId")
+	var err error
+	request.EmployeeId, err = strconv.Atoi(employeeId)
+	return err
+}
 
 func (app *ApiHandler) DeleteEmpoyee(ctx *gin.Context) {
 	var request requestDto.DeleteEmployeeRequest
-	err := ctx.ShouldBindQuery(&request)
+	err := validateDeleteEmployee(ctx, &request)
 	if err != nil {
 		logger.Error(ctx, err.Error())
 		ctx.JSON(http.StatusBadRequest, responseDto.GetErrorResponseObj(err.Error()))

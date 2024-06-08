@@ -3,14 +3,14 @@ package cloudSql
 import (
 	"database/sql"
 	"fmt"
-	"os"
+	_ "github.com/go-sql-driver/mysql"
 )
 
 var (
-	DbUser = os.Getenv("SQL_USER")
-	DbPwd  = os.Getenv("SQL_PASSWORD")
-	DbHost = os.Getenv("SQL_HOST")
-	DbName = os.Getenv("SQL_DB")
+	DbUser = "root"      //os.Getenv("SQL_USER")
+	DbPwd  = ""          //os.Getenv("SQL_PASSWORD")
+	DbHost = "localhost" //os.Getenv("SQL_HOST")
+	DbName = "crud"      //os.Getenv("SQL_DB")
 )
 
 type SqlClient struct {

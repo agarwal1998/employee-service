@@ -6,11 +6,19 @@ import (
 	"crud/pkg/entity/responseDto"
 	"github.com/gin-gonic/gin"
 	"net/http"
+	"strconv"
 )
+
+func validateGetEmployee(ctx *gin.Context, request *requestDto.GetEmployeeRequest) error {
+	employeeId := ctx.Param("employeeId")
+	var err error
+	request.EmployeeId, err = strconv.Atoi(employeeId)
+	return err
+}
 
 func (app *ApiHandler) GetEmpoyee(ctx *gin.Context) {
 	var request requestDto.GetEmployeeRequest
-	err := ctx.ShouldBindQuery(&request)
+	err := validateGetEmployee(ctx, &request)
 	if err != nil {
 		logger.Error(ctx, err.Error())
 		ctx.JSON(http.StatusBadRequest, responseDto.GetErrorResponseObj(err.Error()))
