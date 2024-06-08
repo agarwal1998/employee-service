@@ -10,8 +10,8 @@ import (
 
 func NewRouter() *gin.Engine {
 	sqlClient := cloudSql.ConnectDB()
-	userRepo := infrastructure.NewEmployeeRepo(sqlClient)
-	employeeLogic := logic.NewEmployeeLogic(userRepo)
+	employeeRepo := infrastructure.NewEmployeeRepo(sqlClient)
+	employeeLogic := logic.NewEmployeeLogic(employeeRepo)
 	apiHandler := handlers.NewApiHandler(employeeLogic)
 	router := gin.Default()
 	v1 := router.Group("/employee-service/v1")
